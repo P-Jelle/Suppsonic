@@ -11,7 +11,16 @@
   "sections": {
     "main": {
       "type": "page",
+      "disabled": true,
       "settings": {}
+    },
+    "small_hero_DmfXMU": {
+      "type": "small-hero",
+      "name": "Small Hero",
+      "settings": {
+        "title": "SUPP KOPPELINGEN",
+        "description": "Profiteer van krachtige koppelingen met marktleiders en innovatieve partners. SUPP brengt je relatiebeheer, administratie en externe data moeiteloos samen."
+      }
     },
     "cards_yNX4Cj": {
       "type": "grid-cards",
@@ -43,6 +52,7 @@
   },
   "order": [
     "main",
+    "small_hero_DmfXMU",
     "cards_yNX4Cj"
   ]
 }

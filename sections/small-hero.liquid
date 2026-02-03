@@ -1,0 +1,44 @@
+<section class="col-span-full relative py-24 overflow-hidden bg-supp-dark-blue">
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div
+      class="absolute top-10 right-20 w-72 h-72 rounded-full opacity-20 blur-3xl bg-supp-blue"
+    ></div>
+    <div
+      class="absolute bottom-10 left-20 w-64 h-64 rounded-full opacity-15 blur-3xl bg-supp-blue"
+    ></div>
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 text-center animate-fade-in">
+    <h1 class="text-5xl md:text-6xl font-bold mb-6 text-supp-blue">
+      {{ section.settings.title }}
+    </h1>
+
+    <p class="text-lg md:text-xl text-white/70 max-w-3xl mx-auto mb-8">
+      {{ section.settings.description }}
+    </p>
+
+    <button class="btn-primary">Demo aanvragen</button>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Small Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Small Hero"
+    }
+  ]
+}
+{% endschema %}

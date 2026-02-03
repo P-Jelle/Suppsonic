@@ -11,7 +11,16 @@
   "sections": {
     "main": {
       "type": "page",
+      "disabled": true,
       "settings": {}
+    },
+    "small_hero_qXYErT": {
+      "type": "small-hero",
+      "name": "Small Hero",
+      "settings": {
+        "title": "SUPP TOOLS",
+        "description": "Ontdek de krachtige tools die SUPP te bieden heeft voor optimaal relatiebeheer"
+      }
     },
     "cards_zNrWBG": {
       "type": "grid-cards",
@@ -79,6 +88,7 @@
   },
   "order": [
     "main",
+    "small_hero_qXYErT",
     "cards_zNrWBG"
   ]
 }

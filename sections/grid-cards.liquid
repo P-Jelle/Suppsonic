@@ -5,7 +5,7 @@
         {%- assign bs = block.settings -%}
         {% if bs.icon != blank and bs.title != blank and bs.description != blank %}
           <div
-            class="card bg-white rounded-2xl p-6 card-hover animate-fade-in flex flex-col"
+            class="card bg-white rounded-2xl p-6 shadow-md animate-fade-in flex flex-col"
             style="animation-delay: {{ forloop.index0 | times: 0.2 }}s;"
             {{ block.shopify_attributes }}
           >
@@ -22,16 +22,36 @@
         {% endif %}
       {% endfor %}
     </div>
-
-    <div class="text-center mt-16">
-      <a href="{{ section.settings.button_link }}">
-        <button class="px-8 py-3 bg-accent text-white rounded-lg hover:opacity-90 transition">
-          {{ section.settings.button_text | default: 'Demo aanvragen' }}
-        </button>
-      </a>
-    </div>
   </div>
 </section>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SUPP CRM - {{ page.title | escape }}",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "{{ page.description | default: page.content | strip_html | truncate: 160 | escape }}",
+    "offers": {
+      "@type": "Offer",
+      "price": "69.95",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "description": "€ 69,95 per maand per gebruiker"
+    },
+    "amenityFeature": [
+      {% for block in section.blocks %}
+      {
+        "@type": "LocationFeatureSpecification",
+        "name": "{{ block.settings.title | escape }}",
+        "value": "Yes",
+        "description": "{{ block.settings.description | strip_newlines | escape }}"
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }
+</script>
 
 {% stylesheet %}
   .card svg {
@@ -73,7 +93,7 @@
   "presets": [
     {
       "name": "Grid Cards"
-    },
+    }
   ]
 }
 {% endschema %}
