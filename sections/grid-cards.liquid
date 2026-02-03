@@ -1,0 +1,79 @@
+<section class="py-20">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {% for block in section.blocks %}
+        {%- assign bs = block.settings -%}
+        {% if bs.icon != blank and bs.title != blank and bs.description != blank %}
+          <div
+            class="card bg-white rounded-2xl p-6 card-hover animate-fade-in flex flex-col"
+            style="animation-delay: {{ forloop.index0 | times: 0.2 }}s;"
+            {{ block.shopify_attributes }}
+          >
+            <div class="mb-4 w-12 h-12 bg-light-supp-blue rounded-lg flex items-center justify-center">
+              {{ bs.icon }}
+            </div>
+            <h3 class="text-lg font-semibold text-foreground mb-2">
+              {{ bs.title }}
+            </h3>
+            <p class="text-muted-foreground text-sm leading-relaxed">
+              {{ bs.description }}
+            </p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-16">
+      <a href="{{ section.settings.button_link }}">
+        <button class="px-8 py-3 bg-accent text-white rounded-lg hover:opacity-90 transition">
+          {{ section.settings.button_text | default: 'Demo aanvragen' }}
+        </button>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .card svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--color-supp-blue);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Grid Cards",
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon",
+          "label": "SVG Icon Code",
+          "info": "Paste the raw <svg>...</svg> code here."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "info": "Enter the title for this card."
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "info": "Briefly describe the service"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Grid Cards"
+    },
+  ]
+}
+{% endschema %}

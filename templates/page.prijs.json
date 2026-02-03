@@ -8,17 +8,13 @@
  * ------------------------------------------------------------
  */
 {
-  "type": "header",
-  "name": "t:general.header",
   "sections": {
-    "header": {
-      "type": "header",
-      "settings": {
-        "menu": "main-menu"
-      }
+    "main": {
+      "type": "page",
+      "settings": {}
     }
   },
   "order": [
-    "header"
+    "main"
   ]
 }
