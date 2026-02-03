@@ -14,7 +14,7 @@
       "settings": {}
     },
     "cards_zNrWBG": {
-      "type": "cards",
+      "type": "grid-cards",
       "blocks": {
         "card_W9MKFk": {
           "type": "card",
