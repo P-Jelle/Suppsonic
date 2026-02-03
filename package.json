@@ -1,0 +1,11 @@
+{
+  "name": "shopify-tailwind-theme",
+  "version": "1.0.0",
+  "dependencies": {
+    "tailwindcss": "^4.1.18"
+  },
+  "scripts": {
+    "dev:css": "npx @tailwindcss/cli -i ./assets/tailwind.css -o ./assets/output.css --watch",
+    "build:css": "npx @tailwindcss/cli -i ./assets/tailwind.css -o ./assets/output.css --minify"
+  }
+}
