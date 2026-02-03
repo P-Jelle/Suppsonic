@@ -1,0 +1,94 @@
+<section class="py-20">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {% for block in section.blocks %}
+        {%- assign bs = block.settings -%}
+        <a
+          href="{{ bs.link }}" target="_blank" rel="noopener"
+          class="card bg-white rounded-2xl p-6 shadow-md animate-fade-in flex flex-col"
+          style="animation-delay: {{ forloop.index0 | times: 0.2 }}s;"
+          {{ block.shopify_attributes }}
+        >
+          <h3 class="text-lg font-semibold text-foreground mb-2">
+            {{ bs.title }}
+          </h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            {{ bs.description }}
+          </p>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SUPP CRM - {{ page.title | escape }}",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "{{ page.description | default: page.content | strip_html | truncate: 160 | escape }}",
+    "offers": {
+      "@type": "Offer",
+      "price": "69.95",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "description": "€ 69,95 per maand per gebruiker"
+    },
+    "amenityFeature": [
+      {% for block in section.blocks %}
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "{{ block.settings.title | escape }}",
+          "value": "Yes",
+          "description": "{{ block.settings.description | strip_newlines | escape }}"
+        }{% unless forloop.last %},{% endunless %}{% endfor %}
+    ]
+  }
+</script>
+
+{% stylesheet %}
+  .card svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--color-supp-blue);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Koppelingen",
+  "blocks": [
+    {
+      "type": "koppeling",
+      "name": "Koppeling",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "info": "Enter the title for this koppeling."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Enter the URL for this koppeling."
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "info": "Briefly describe the koppeling"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Koppelingen"
+    }
+  ]
+}
+{% endschema %}

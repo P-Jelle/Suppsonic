@@ -1,0 +1,91 @@
+<section class="col-span-full relative min-h-[80vh] flex items-center overflow-hidden bg-supp-dark-blue">
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full opacity-30 blur-[120px] bg-supp-blue animate-pulse"></div>
+    <div class="absolute -bottom-24 -left-24 w-[400px] h-[400px] rounded-full opacity-20 blur-[100px] bg-supp-blue"></div>
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 py-20 lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+    
+    <div class="text-left animate-fade-in-up">
+      {% if section.settings.subheading != blank %}
+        <span class="inline-block py-1 px-3 rounded-full bg-supp-blue/10 text-supp-blue text-sm font-semibold tracking-wide mb-4">
+          {{ section.settings.subheading }}
+        </span>
+      {% endif %}
+
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white leading-tight">
+        {{ section.settings.title | replace: '[', '<span class="text-supp-blue">' | replace: ']', '</span>' }}
+      </h1>
+
+      <p class="text-lg md:text-2xl text-white/80 max-w-xl mb-10 leading-relaxed">
+        {{ section.settings.description }}
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <button class="btn-primary px-8 py-4 text-lg">
+          Demo aanvragen
+        </button>
+        {% if section.settings.secondary_cta_text != blank %}
+          <button class="px-8 py-4 text-lg font-semibold text-white border border-white/20 rounded-lg hover:bg-white/10 transition-all">
+            {{ section.settings.secondary_cta_text }}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="hidden lg:block relative animate-fade-in">
+      <div class="relative z-20 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-4 shadow-2xl">
+        {% if section.settings.image != blank %}
+          <img src="{{ section.settings.image | img_url: '1000x' }}" alt="Hero Image" class="rounded-lg w-full h-auto">
+        {% else %}
+          <div class="aspect-video bg-gradient-to-br from-supp-blue/20 to-transparent rounded-lg flex items-center justify-center">
+            <div class="w-16 h-16 rounded-full bg-supp-blue opacity-50 blur-xl"></div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Nieuwe generatie"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title (Use [brackets] for blue text)",
+      "default": "Transformeer je workflow met [onze expertise]"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Wij helpen bedrijven groeien door middel van innovatieve oplossingen en persoonlijke ondersteuning."
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_text",
+      "label": "Secondary Button Text",
+      "default": "Ontdek meer"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Hero"
+    }
+  ]
+}
+{% endschema %}

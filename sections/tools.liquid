@@ -3,23 +3,21 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {% for block in section.blocks %}
         {%- assign bs = block.settings -%}
-        {% if bs.icon != blank and bs.title != blank and bs.description != blank %}
-          <div
-            class="card bg-white rounded-2xl p-6 shadow-md animate-fade-in flex flex-col"
-            style="animation-delay: {{ forloop.index0 | times: 0.2 }}s;"
-            {{ block.shopify_attributes }}
-          >
-            <div class="mb-4 w-12 h-12 bg-light-supp-blue rounded-lg flex items-center justify-center">
-              {{ bs.icon }}
-            </div>
-            <h3 class="text-lg font-semibold text-foreground mb-2">
-              {{ bs.title }}
-            </h3>
-            <p class="text-muted-foreground text-sm leading-relaxed">
-              {{ bs.description }}
-            </p>
+        <div
+          class="card bg-white rounded-2xl p-6 shadow-md animate-fade-in flex flex-col"
+          style="animation-delay: {{ forloop.index0 | times: 0.2 }}s;"
+          {{ block.shopify_attributes }}
+        >
+          <div class="mb-4 w-12 h-12 bg-light-supp-blue rounded-lg flex items-center justify-center">
+            {{ bs.icon }}
           </div>
-        {% endif %}
+          <h3 class="text-lg font-semibold text-foreground mb-2">
+            {{ bs.title }}
+          </h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            {{ bs.description }}
+          </p>
+        </div>
       {% endfor %}
     </div>
   </div>
@@ -42,13 +40,12 @@
     },
     "amenityFeature": [
       {% for block in section.blocks %}
-      {
-        "@type": "LocationFeatureSpecification",
-        "name": "{{ block.settings.title | escape }}",
-        "value": "Yes",
-        "description": "{{ block.settings.description | strip_newlines | escape }}"
-      }{% unless forloop.last %},{% endunless %}
-      {% endfor %}
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "{{ block.settings.title | escape }}",
+          "value": "Yes",
+          "description": "{{ block.settings.description | strip_newlines | escape }}"
+        }{% unless forloop.last %},{% endunless %}{% endfor %}
     ]
   }
 </script>
@@ -63,11 +60,11 @@
 
 {% schema %}
 {
-  "name": "Grid Cards",
+  "name": "Tools",
   "blocks": [
     {
-      "type": "card",
-      "name": "Card",
+      "type": "tool",
+      "name": "Tool",
       "settings": [
         {
           "type": "textarea",
@@ -79,20 +76,20 @@
           "type": "text",
           "id": "title",
           "label": "Title",
-          "info": "Enter the title for this card."
+          "info": "Enter the title for this tool."
         },
         {
           "type": "textarea",
           "id": "description",
           "label": "Description",
-          "info": "Briefly describe the service"
+          "info": "Briefly describe the tool"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Grid Cards"
+      "name": "Tools"
     }
   ]
 }

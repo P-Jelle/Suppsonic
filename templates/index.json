@@ -9,12 +9,19 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {}
+    "hero_EAyWaH": {
+      "type": "hero",
+      "name": "Home Hero",
+      "settings": {
+        "subheading": "",
+        "title": "Transformeer je workflow met [onze expertise]",
+        "description": "Wij helpen bedrijven groeien door middel van innovatieve oplossingen en persoonlijke ondersteuning.",
+        "secondary_cta_text": "",
+        "image": "shopify://shop_images/image.png"
+      }
     }
   },
   "order": [
-    "main"
+    "hero_EAyWaH"
   ]
 }
